@@ -1,0 +1,79 @@
+{% extends 'Temp/admin.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update or Delete Student</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <center>
+        <table><br><br><br>
+            <div class="col-lg-5">
+                <div class="card-body rounded-bottom bg-dark p-5" id="all_registered">
+                    <h1 style="font-family: 'Times New Roman';color: peru" align="center">Update</h1><br>
+
+                    <!-- Joining Date Field -->
+                    <div class="form-group">
+                        <input type="text" name="ct" value="{{ dd.card_type }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="card_type" required="required" />
+                    </div><br>
+                    
+                    <div class="form-group">
+                        <input type="text" name="cc" value="{{ dd.card_color }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="card_color" required="required" />
+                    </div><br>
+
+                    <div class="form-group">
+                        <input type="text" name="hn" value="{{ dd.head_name }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="head_name" required="required" />
+                    </div><br>
+
+                    <div class="form-group">
+                            <input type="text" name="ai" value="{{ dd.annual_income }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="annual_income" required="required" />
+                    </div><br>
+                    <div class="form-group">
+                        <input type="text" name="oc" value="{{ dd.occupation }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="occupation" required="required" />
+                </div><br>
+
+                <div class="form-group">
+                    <input type="text" name="ag" value="{{ dd.age }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="age" required="required" />
+            </div><br> 
+
+            <div class="form-group">
+                <input type="text" name="nf" value="{{ dd.no_of_family_member }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="no of family member" required="required" />
+        </div><br>
+        
+        <div class="form-group">
+            <input type="text" name="na" value="{{ dd.no_of_adults }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="no_of_adults" required="required" />
+    </div><br>
+    <div class="form-group">
+        <input type="text" name="nc" value="{{ dd.no_of_family_children}}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="no_of_family_children" required="required" />
+</div><br>   
+
+<div class="form-group">
+    <input type="text" name="ad" value="{{ dd.address}}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="address" required="required" />
+</div><br>  
+
+<div class="form-group">
+    <input type="text" name="mn" value="{{ dd.mobile_number}}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="mobile_number" required="required" />
+</div><br>                                    
+
+                    {% comment %} <!-- Password Field -->
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Enter Password" />
+                        <small>Leave blank to keep the current password.</small>
+                    </div><br> {% endcomment %}
+
+                    <!-- Update Button -->
+                    <div>
+                        <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Update</button>
+                    </div>
+                </div>
+            </div>
+        </table>
+    </center>
+</form>
+</body>
+</html>
+{% endblock %}

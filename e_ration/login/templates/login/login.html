@@ -1,0 +1,109 @@
+{% comment %}{% extends 'Temp/login.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+   <title></title>
+</head>
+<body>
+   <center>
+
+      <form method="post">
+            {% csrf_token %}
+         <table><br><br><br>
+                <div class="col-lg-5">
+                       <div class="card-body rounded-bottom bg-secondary p-5">
+                        <a><img class="w-25" src="/static/img/tt.png" alt="Image" width="10" height="100"></a>
+                        
+                            <h1 style="font-family: 'Times New Roman';color: peru" align="center">LOGIN</h1><br>
+                                <div class="form-group">
+                                    <input type="text" name="user" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Enter Your Username" required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your Password" required="required" />
+                                </div><br>
+                                <div>
+                                    <button class="btn btn-primary btn-block p-3"style="font-family: 'Times New Roman'" type="submit">LOGIN</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+         </table>
+      </form>
+    <font color="red">
+        {% if msg %}
+            {{ msg }}
+        {% endif %}
+    </font>
+   </center>
+
+</body>
+</html>
+{% endblock %}{% endcomment %}
+{% comment %} {% extends 'Temp/login.html' %} {% endcomment %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link href="/static/css/loginstyle.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="home-button">
+          <a href="/Temp/home">Back to Home</a>
+      </div>
+  </div>
+  
+  <center>
+    <form method="post">
+        {% csrf_token %}
+     <table><br><br><br>
+          <div class="wrapper">
+            <img class="w-5" src="/static/img/tt.png" alt="Image" style="width: 80px; height: 80px;"><h1 class="m-0 display-5 text-white" style="font-family: 'Arial', sans-serif;"><span style="color: white;">E</span><span style="color: #28a745;">Ration</span>
+
+              
+          </h1>
+            {% comment %} <form action="#"> {% endcomment %}
+              <h2>Login</h2>
+                <div class="form-group">
+                    <div class="input-field">
+                <input type="text" name="user" required="required" />
+                <label>Enter your Username</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-field">
+                <input type="password" name="password" required="required" />
+                <label>Enter your password</label>
+                </div>
+              </div><br>
+              {% comment %} <div class="forget">
+                <label for="remember">
+                  <input type="checkbox" id="remember">
+                  <p>Remember me</p>
+                </label>
+                <a href="#">Forgot password?</a>
+              </div> {% endcomment %}
+              <button type="submit">LOGIN</button><br><br>
+              {% comment %} <div class="register">
+                <p>Don't have an account? <a href="#">Register</a></p>
+              </div> {% endcomment %}
+            </div>
+            {% comment %} </table> {% endcomment %}
+        </table>
+    </form>
+  <font color="white" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-weight: bold; font-size: 20px;">
+      {% if msg %}
+          {{ msg }}
+      {% endif %}
+  </font>
+ </center>
+</body>
+</html>
+
+{% endblock %}

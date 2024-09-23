@@ -1,0 +1,81 @@
+{% extends 'Temp/admin.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage product </title>
+    </head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <center>
+        {% comment %} <button id="add_student" class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'">Add Student</button>
+        <button id="all_registered" class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'">All Registered Students</button> {% endcomment %}
+        <table><br><br><br>
+            <div class="col-lg-5">
+                <div class="card-body rounded-bottom bg-dark p-5" id="add_student">
+                    <h1 style="font-family: 'Times New Roman';color: peru" align="center">Add Ration product</h1><br>
+
+                  
+
+                    {% comment %} <div class="form-group">
+                        <label for="from_date" style="color: #fff">From Date:</label>
+                        <input type="date" name="from_date" id="from_date" class="form-control" min="{{ dt }}" required>
+                    </div><br> {% endcomment %}
+
+                    <!-- Name Field -->
+                    {% comment %} <div class="form-group">
+                        <input type="text" name="name" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Enter Student Name" required="required" />
+                    </div><br> {% endcomment %}
+                    <div class="form-group">
+                        <label style="color:white">Card Type</label>
+                        <input type="text" name="Card Type" class="form-control p-4" style="font-family: 'Times New Roman'" 
+                               placeholder="Card Type" 
+                               required="required" />
+                    </div><br>
+
+                    <!-- Department Field -->
+                    <div class="form-group">
+                        <label style="color:white">Card Color</label>
+                        <input type="text" name="Card Color" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Card Color" required="required" />
+                    </div><br>
+
+                    <!-- Department Field -->
+                    <div class="form-group">
+                        <label style="color:white">product Name</label>
+                        <input type="text" name="product Name" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="product Name" required="required" />
+                    </div><br>
+
+                     <!-- Department Field -->
+                     <div class="form-group">
+                        <label style="color:white">Quantity</label>
+                        <input type="text" name="Quantity" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Quantity" required="required" />
+                    </div><br>
+
+                     <!-- Department Field -->
+                     <div class="form-group">
+                        <label style="color:white">price</label>
+                        <input type="text" name="price" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="price" required="required" />
+                    </div><br>
+                    <div>
+                        <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Add </button>
+                    </div><br>
+                    <div>
+                        <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Update </button>
+                    </div>
+                </div>
+                
+            </div>
+        </table>
+    </center>
+    {% if msg != '' %}
+            <script>
+                alert("{{ msg }}");
+            </script>
+    {% endif %}
+</form>
+</body>
+</html>
+{% endblock %}

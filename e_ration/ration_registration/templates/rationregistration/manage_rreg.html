@@ -1,0 +1,45 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Requests</title>
+</head>
+<body>
+    <center><br><br>
+    <h1>RationShop Registration Requests</h1>
+    <table border="1" class="table table-striped">
+		<tr>          
+                <td>Shop ID</td>
+                <td>Shop Name</td>
+                <td>Shopkeeper Name</td>
+                <td>Address</td>
+                <td>Email</td>
+                <td>Muncipality</td>
+                <td>Status</td>
+                <td>Actions</td>
+            </tr>
+            {% for i in dd %}
+            <tr>
+                <td>{{ i.shopid }}</td>
+                <td>{{ i.shopname }}</td>
+                <td>{{ i.shopkeeper_name }}</td>
+                <td>{{ i.address }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.muncipality }}</td>
+                <td>{{ i.status }}</td>
+                <td><a href="{% url 'approve' idd=i.leave_id %}/#dd" class="btn btn-outline-dark">Approve</a></td>
+                <td><a href="{% url 'reject' idd=i.leave_id %}/#dd" class="btn btn-outline-dark">Reject</a></td>
+                {% comment %} <td><a href="{% url 'approve_leave_request' ill=leave_id %}" class="btn btn-outline-dark">Approve</a></td>
+                <td><a href="{% url 'reject_leave_request' ill=leave_id %}" class="btn btn-outline-dark">Reject</a></td> {% endcomment %}
+                <td>
+                {% comment %} <a href="{% url 'approve_leave_request' i.leave_id %}" class="btn btn-outline-dark">Approve</a> | <a href="{% url 'reject_leave_request' i.leave_id %}" class="btn btn-outline-dark">Reject</a></td> {% endcomment %}
+            </tr>
+            {% endfor %}
+    </table>
+    </center>
+</body>
+</html>
+{% endblock %}

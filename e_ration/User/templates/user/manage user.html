@@ -1,0 +1,50 @@
+{% extends 'Temp/admin.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<center><br><br>
+<h1>MANAGE STUDENT</h1><br>
+	<table border="1" class="table table-striped">
+		<tr>
+			<td>Card_type </td>
+			<td>Card_color</td>
+			<td>Head_name</td>
+            <td>annual_income</td>
+            <td>occupation</td>
+            <td>age</td>
+            <td>no_of_family_member</td>
+            <td>no_of_adults</td>
+            <td>no_of_family_children</td>
+            <td>address</td>
+            <td>mobile_number</td>
+            
+		</tr>
+		{% for i in dd %}
+		<tr>
+			<td>{{ i.card_type }}</td>
+			<td>{{ i.card_color}}</td>
+            <td>{{ i.head_name}}</td>
+            <td>{{ i.annual_income}}</td>
+            <td>{{ i.occupation}}</td>
+            <td>{{ i.age}}</td>
+            <td>{{ i.no_of_family_member}}</td>
+            <td>{{ i.no_of_adults}}</td>
+            <td>{{ i.no_of_family_children}}</td>
+            <td>{{ i.address}}</td>
+            <td>{{ i.mobile_number}}</td>
+			<td><a href="{% url 'upd' idd=i.user_id %}/#bb" class="btn btn-outline-dark">Update</a></td>
+            <td><a href="{% url 'del' idd=i.user_id %}/#bb" class="btn btn-outline-dark">Delete</a></td>                
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+
+</body>
+</html>
+{% endblock %}

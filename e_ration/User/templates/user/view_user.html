@@ -1,0 +1,50 @@
+{% extends 'Temp/admin.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<center><br><br><br>
+<h1>User Details</h1><br>
+	<table border="1" class="table table-striped">
+		<tr>
+			<td>User Id</td>
+			<td>Card Id</td>
+			<td>Card type</td>
+			<td>Card color</td>
+            <td>Head name</td>
+            <td>Annual Income</td>
+            <td>Occupation</td>
+            <td>Age</td>
+            <td>No of family member</td>
+            <td>No of adults</td>
+            <td>No of family children</td>
+            <td>Address</td>
+            <td>Mobile Number</td>
+		</tr>
+        {% for i in dd %}
+		<tr>
+			<td>{{ i.user_id }}</td>
+			<td>{{ i.card_id }}</td>
+			<td>{{ i.card_type }}</td>
+			<td>{{ i.card_color}}</td>
+            <td>{{ i.head_name}}</td>
+            <td>{{ i.annual_income}}</td>
+            <td>{{ i.occupation}}</td>
+            <td>{{ i.age}}</td>
+            <td>{{ i.no_of_family_member}}</td>
+            <td>{{ i.no_of_adults}}</td>
+            <td>{{ i.no_of_family_children}}</td>
+            <td>{{ i.address}}</td>
+            <td>{{ i.mobile_number}}</td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+</body>
+</html>
+{% endblock %}

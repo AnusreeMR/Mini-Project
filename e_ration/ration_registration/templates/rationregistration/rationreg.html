@@ -1,0 +1,130 @@
+{#{% extends 'temp/register.html' %}#}
+{#{% block base %}#}
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#	<meta charset="utf-8">#}
+{#	<meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#	<title></title>#}
+{#</head>#}
+{#<body>#}
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    <center><br>#}
+{#        <h1><B>REGISTER</B></h1>#}
+{#	<table>#}
+{#		<tr>#}
+{#			<td>name</td><br>#}
+{#			<td><input type="text" name="name" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td>address</td>#}
+{#			<td><input type="textarea" name="address" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td>gender</td>#}
+{#			<td><input type="radio" name="gen" value="male" checked="">male#}
+{#			    <input type="radio" name="gen" value="female">female#}
+{#                <input type="radio" name="gen" value="other">other#}
+{#			</td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#            <td>age</td>#}
+{#			<td><input type="text" name="age" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#            <td>contact</td>#}
+{#			<td><input type="text" name="contact" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td>email</td>#}
+{#			<td><input type="email" name="email" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td>password</td>#}
+{#			<td><input type="password" name="password" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td><input type="submit" name="submit"></td>#}
+{#		</tr>#}
+{#	</table>#}
+{#    </center>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+{% extends 'temp/register.html'%}
+{% block base %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+	<title></title>
+</head>
+<body><center>
+	<form method="post">
+        {% csrf_token %}
+		<table><br><br><br>
+            <div class="col-lg-5">
+                <div class="card-body rounded-bottom bg-secondary p-5">
+                    <img class="w-25" src="/static/img/tt.png" alt="Image">
+                        <h1 style="font-family: 'Times New Roman';color: peru" align="center">RATIONSHOP REGISTER</h1><br>
+ 
+                    <div class="form-group">
+                        <label style="color:white">Shop ID</label>
+                    <input type="text" name="shopid" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Shopkeeer ID" required="" />
+                    <span style="color: red;">{{ shopid_error }}</span>
+                </div>
+                    <div class="form-group">
+                        <label style="color:white">Shop Name</label>
+                        <input type="text" name="shopname" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="ShopName" required="required" pattern="[A-Za-z\s]+" 
+                        title="Only alphabets and spaces are allowed." />
+                        {% comment "" %}<textarea name="address" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your address" required="required"  /></textarea>{% endcomment %}
+{#                        <input type="text" name="address" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your address" required="required"  />#}
+                    </div>
+                    {% comment "" %}<div class="form-group" style="color: white">
+                        <input type="radio" name="gen" value="male" checked="" style=" font-family: 'Times New Roman';color: white" class="">Male
+                        <input  type="radio"  name="gen" value="female" checked="" style="font-family: 'Times New Roman'">Female
+                        <input type="radio" name="gen" value="other" checked="" style="font-family: 'Times New Roman'">Other
+                    </div>{% endcomment %}
+                    <div class="form-group">
+                        <label style="color:white">Shopkeeper Name</label>
+                        <input type="text" name="shopkeeper_name" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Shopkeeper Name" required="required" pattern="[A-Za-z\s]+" 
+                        title="Only alphabets and spaces are allowed."  />
+                    </div>
+                    <div class="form-group">
+                        <label style="color:white">Address</label>
+                        <textarea name="address" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your address" required="required"  /></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label style="color:white">Email</label>
+                        <input type="email" name="email" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your E-mail" required="required" />
+                        <span style="color: red;">{{ email_error }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label style="color:white">Muncipality</label>
+                        <input type="text" name="muncipality" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Muncipality" required="required" pattern="[A-Za-z\s]+" 
+                        title="Only alphabets and spaces are allowed." />
+                        {% comment "" %}<input type="password" name="password" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your password" minlength="8" maxlength="8" required="required" />{% endcomment %}
+                    </div>
+                    <br>
+                    <div>
+                        <button class="btn btn-primary btn-block p-3"style="font-family: 'Times New Roman'" type="submit">REGISTER</button>
+                    </div>
+                </div>
+            </div>
+        </table>
+        {% if msg != '' %}
+            <script>
+                alert("Successfully registered..." )
+            </script>
+        {% endif %}
+        {% comment %}{% if msg %}
+        <div style="color: green;">{{ msg }}</div>
+    {% endif %}{% endcomment %}
+    </form>
+    </center>
+</body>
+</html>
+{% endblock %}
