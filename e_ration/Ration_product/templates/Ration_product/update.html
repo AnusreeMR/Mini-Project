@@ -1,0 +1,46 @@
+{% extends 'Temp/admin.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage Ration Product</title>
+</head>
+<body>
+<form method="post" onsubmit="return validateDate()">
+    {% csrf_token %}
+    <center>
+        <table><br><br><br>
+            <div class="col-lg-5">
+                <div class="card-body rounded-bottom bg-dark p-5" id="all_registered">
+                    <h1 style="font-family: 'Times New Roman';color: peru" align="center">Manage Ration Product</h1><br>
+
+                    <!-- Joining Date Field -->
+                    <div class="form-group">
+                        <input type="date" name="date" value="{{ dd.joining_date}}" class="form-control p-4" style="font-family: 'Times New Roman'" required="required" />
+                        <span id="dateError" style="color: red;"></span>
+                    </div><br>
+
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <input type="text" name="ne" value="{{ dd.name }}" class="form-control p-4" style="font-family: 'Times New Roman'" required="required" />
+                    </div><br>
+
+                    <!-- Mess Number Field -->
+                    <div class="form-group">
+                        <input type="text" name="d" value="{{ dd.department }}" class="form-control p-4" style="font-family: 'Times New Roman'" required="required" />
+                    </div><br>
+
+                    <!-- Update Button -->
+                    <div>
+                        <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Update Student</button>
+                    </div>
+                </div>
+            </div>
+        </table>
+    </center>
+</form>
+</body>
+</html>
+{% endblock %}
