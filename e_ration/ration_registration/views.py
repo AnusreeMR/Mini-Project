@@ -5,6 +5,7 @@ import random
 import string
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 
@@ -33,11 +34,6 @@ def rreg(request):
             obj.muncipality = request.POST.get('muncipality')
             obj.save()
 
-            ob = Login()
-            ob.username = obj.shopkeeper_name
-            ob.type = 'shopkeeper'
-            ob.uid = obj.shop_id
-            ob.save()
 
             obk = "Successfully registered"
     
@@ -63,6 +59,7 @@ def accept(request, idd):
 
     obb=Login()
     new_password = generate_random_password()
+    obb.username = obj.shopkeeper_name
     # Hash the password before saving (Django stores hashed passwords)
     obb.password = make_password(new_password) 
     obb.type = 'shopkeeper'
@@ -71,14 +68,21 @@ def accept(request, idd):
     
     # Send an email with the new password
     send_mail(
-        'Volunteer Account Accepted',
-        f'Hello {obj.shop_name},\n\nYour Rationshop account has been accepted. Here are your login credentials:\n\nUsername: {obj.email}\nPassword: {new_password}\n\nPlease change your password after logging in.',
+        'Registration Successfull',
+        f'Hello {obj.shopkeeper_name},\n\nYour Rationshop account has been accepted. Here are your login credentials:\n\nUsername: {obj.shopkeeper_name}\nPassword: {new_password}\n\nPlease change your password after logging in.',
         'admin@yourorganization.com',  # Replace with your "from" email
         [obj.email],  # Send to the volunteer's email
         fail_silently=False,
     )
     
     return rreg(request)
+
+def mr(request):
+    obj=Shopkeeper.objects.all()
+    context={
+        'dd':obj
+    }
+    return render(request,'rationregistration/manage_rreg.html',context)
 
 #def approve(request,idd) :
    #obj=Shopkeeper.objects.get(shop_id=idd)

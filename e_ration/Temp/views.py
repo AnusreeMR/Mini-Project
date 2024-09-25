@@ -8,7 +8,8 @@ def home(request):
 def admin(request):
     return render(request,'Temp/admin.html')
 
-
+def user(request):
+    return render(request,'Temp/user.html')
 
 def register(request):
     return render(request,'Temp/register.html')
