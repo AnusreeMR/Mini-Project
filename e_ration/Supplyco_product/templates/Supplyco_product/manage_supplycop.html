@@ -1,0 +1,39 @@
+{% extends 'Temp/shopkeeper.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<center><br><br>
+<h1>MANAGE SUPPLYCO PRODUCT</h1><br>
+	<table border="1" class="table table-striped">
+		<tr>
+			<td>Product Name </td>
+			<td>Manufacture Date</td>
+			<td>Expiry Date</td>
+            <td>Quantity</td>
+            <td>Actual price</td>
+            <td>Available price</td>
+		</tr>
+		{% for i in dd %}
+		<tr>
+			<td>{{ i.supplycoproduct_name }}</td>
+			<td>{{ i.manufacture_date}}</td>
+            <td>{{ i.expiry_date}}</td>
+            <td>{{ i.quantity}}</td>
+            <td>{{ i.actual_price}}</td>
+            <td>{{ i.available_price}}</td>
+			<td><a href="/Supplyco_product/update/{{i.supplycoproduct_id}}/#bb" class="btn btn-outline-dark">Update</a></td>
+            <td><a href="{% url 'bb' i.supplycoproduct_id %}/#bb" class="btn btn-outline-dark">Delete</a></td>                
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+
+</body>
+</html>
+{% endblock %}

@@ -23,6 +23,7 @@ urlpatterns = [
     url('login/',include('login.url')),
     url('Temp/',include('Temp.url')),
     url('Ration_product/',include('Ration_product.url')),
+    url('Supplyco_product/',include('Supplyco_product.url')),
     url('ration/',include('ration_registration.url')),
     url('User/',include('User.url')),
     url('$',views.home),

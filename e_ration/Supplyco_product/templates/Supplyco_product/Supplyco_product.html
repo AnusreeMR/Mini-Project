@@ -1,0 +1,71 @@
+{% extends 'Temp/shopkeeper.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage product </title>
+    </head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <center>
+        {% comment %} <button id="add_student" class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'">Add Student</button>
+        <button id="all_registered" class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'">All Registered Students</button> {% endcomment %}
+        <table><br><br><br>
+            <div class="col-lg-5">
+                <div class="card-body rounded-bottom bg-dark p-5" id="add_student">
+                    <h1 style="font-family: 'Times New Roman';color: peru" align="center">Add Supplco product</h1><br>
+
+                    <div class="form-group">
+                        <label style="color:white">Product Name</label>
+                        <input type="text" name="Product Name" class="form-control p-4" style="font-family: 'Times New Roman'" 
+                               placeholder="Product Name" 
+                               required="required" />
+                    </div><br>
+
+                    <div class="form-group">
+                        <label style="color:white">Manufacture Date</label>
+                        <input type="date" name="Manufacture Date" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Manufacture Date" required="required" />
+                    </div><br>
+
+                    <!-- Department Field -->
+                    <div class="form-group">
+                        <label style="color:white">Expiry Date</label>
+                        <input type="date" name="Expiry Date" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Expiry Date" required="required" />
+                    </div><br>
+
+                     <!-- Department Field -->
+                     <div class="form-group">
+                        <label style="color:white">Quantity</label>
+                        <input type="text" name="Quantity" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Quantity" required="required" />
+                    </div><br>
+
+                     <!-- Department Field -->
+                     <div class="form-group">
+                        <label style="color:white">Actual price</label>
+                        <input type="text" name="Actual price" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Actual price" required="required" />
+                    </div><br>
+
+                    <div class="form-group">
+                        <label style="color:white">Available price</label>
+                        <input type="text" name="Available price" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Actual price" required="required" />
+                    </div><br>
+                    <div>
+                        <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Add </button>
+                    </div><br>
+                </div>
+                
+            </div>
+        </table>
+    </center>
+    {% if msg != '' %}
+            <script>
+                alert("{{ msg }}");
+            </script>
+    {% endif %}
+</form>
+</body>
+</html>
+{% endblock %}

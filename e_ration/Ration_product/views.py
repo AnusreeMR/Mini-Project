@@ -20,3 +20,32 @@ def Ration_product(request):
             'msg': obk
     }
     return render(request,'Ration_product/Ration_product.html',context)
+
+def mrp(request):
+    obj=RationProduct.objects.all()
+    context={
+        'dd':obj
+    }
+    return render(request,'Ration_product/manage_Rationp.html',context)
+
+
+def update(request,idd):
+    obj = RationProduct.objects.get(rationproduct_id=idd)
+    context = {
+        'dd': obj
+    }
+    if request.method=="POST":
+        obj=RationProduct.objects.get(rationproduct_id=idd)
+        obj.card_type=request.POST.get('ct')
+        obj.card_color=request.POST.get('cc')
+        obj.product_name=request.POST.get('pn')
+        obj.quantity=request.POST.get('qt')
+        obj.price =request.POST.get('pc')
+        obj.save()
+        return  mrp(request)
+    return render(request,'Ration_product/update.html',context)
+
+def delete(request,idd):
+    obj=RationProduct.objects.get(rationproduct_id=idd)
+    obj.delete()
+    return  mrp(request)

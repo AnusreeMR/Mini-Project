@@ -1,4 +1,4 @@
-{% extends 'Temp/admin.html' %}
+{% extends 'Temp/shopkeeper.html' %}
 {% block base %}
 <!DOCTYPE html>
 <html>
@@ -15,26 +15,29 @@
             <div class="col-lg-5">
                 <div class="card-body rounded-bottom bg-dark p-5" id="all_registered">
                     <h1 style="font-family: 'Times New Roman';color: peru" align="center">Update</h1><br>
-
+        
                     <!-- Joining Date Field -->
                     <div class="form-group">
-                        <input type="text" name="ct" value="{{ dd.card_type }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="card_type" required="required" />
+                        <input type="text" name="sp" value="{{ dd.supplycoproduct_name }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="product_name" required="required" />
                     </div><br>
                     
                     <div class="form-group">
-                        <input type="text" name="cc" value="{{ dd.card_color }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="card_color" required="required" />
+                        <input type="date" name="md" value="{{ dd.manufacture_date }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="manufacture_date" required="required" />
                     </div><br>
 
                     <div class="form-group">
-                        <input type="text" name="pn" value="{{ dd.product_name }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="product_name" required="required" />
+                        <input type="date" name="ed" value="{{ dd.expiry_date }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="expiry_date" required="required" />
                     </div><br>
 
                     <div class="form-group">
                             <input type="text" name="qt" value="{{ dd.quantity }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="quantity" required="required" />
                     </div><br>
                     <div class="form-group">
-                        <input type="text" name="pc" value="{{ dd.price }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="price" required="required" />
-                </div><br>               
+                        <input type="text" name="acp" value="{{ dd.actual_price }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="actual_price" required="required" />
+                </div><br> 
+                <div class="form-group">
+                    <input type="text" name="avp" value="{{ dd.available_price }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="available_price" required="required" />
+            </div><br>                
                     <!-- Update Button -->
                     <div>
                         <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Update</button>

@@ -31,10 +31,9 @@
                 <td>{{ i.muncipality }}</td>
                 <td>{{ i.status }}</td>
                 <td><a href="{% url 'approve' idd=i.shop_id %}/#dd" class="btn btn-outline-dark">Approve</a></td>
-                {% comment %}<td><a href="{% url 'reject' idd=i.shop_id %}/#dd" class="btn btn-outline-dark">Reject</a></td>
-                 <td><a href="{% url 'approve_leave_request' ill=leave_id %}" class="btn btn-outline-dark">Approve</a></td>
+                <td><a href="{% url 'reject' idd=i.shop_id %}/#dd" class="btn btn-outline-dark">Reject</a></td>
+                {% comment %}<td><a href="{% url 'approve_leave_request' ill=leave_id %}" class="btn btn-outline-dark">Approve</a></td>
                 <td><a href="{% url 'reject_leave_request' ill=leave_id %}" class="btn btn-outline-dark">Reject</a></td> {% endcomment %}
-                <td>
                 {% comment %} <a href="{% url 'approve_leave_request' i.leave_id %}" class="btn btn-outline-dark">Approve</a> | <a href="{% url 'reject_leave_request' i.leave_id %}" class="btn btn-outline-dark">Reject</a></td> {% endcomment %}
             </tr>
             {% endfor %}

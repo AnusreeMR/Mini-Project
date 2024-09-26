@@ -75,7 +75,28 @@ def accept(request, idd):
         fail_silently=False,
     )
     
-    return rreg(request)
+    return mr(request)
+
+def reject_rationshop(request, idd):
+    # Fetch the shopkeeper's details using the shop ID
+    obj = Shopkeeper.objects.get(shop_id=idd)
+    obj.status = "Rejected"  # Update the status to "Rejected"
+    
+    # Save the updated status
+    obj.save()
+
+    # Send an email with the rejection message
+    send_mail(
+        'Registration Rejected',
+        f'Dear {obj.shopkeeper_name},\n\nWe regret to inform you that your Ration Shop account registration has been rejected.\n\nBest regards,\nAdmin Team',
+        'admin@yourorganization.com',  # Replace with your "from" email
+        [obj.email],  # Send to the shopkeeper's email
+        fail_silently=False,
+    )
+    
+    # Optionally, you could add a message in the template to notify the admin that the rejection email was sent
+    return mr(request)
+
 
 def mr(request):
     obj=Shopkeeper.objects.all()
