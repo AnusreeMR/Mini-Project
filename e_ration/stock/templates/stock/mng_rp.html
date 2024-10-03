@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Manage Supplyco Product</title>
+	<title>Manage Ration Product Stock</title>
 	<style>
 		body {
 			font-family: 'Arial', sans-serif;
@@ -69,7 +69,6 @@
 		.btn-update:hover {
 			background-color: #0056b3;
 			color:white;
-
 		}
 
 		/* Delete button (red) */
@@ -91,30 +90,28 @@
 <body>
 
 <div class="center">
-	<h1>MANAGE SUPPLYCO PRODUCT</h1>
+	<h1>MANAGE RATION PRODUCT STOCK</h1>
 	<table class="table">
 		<tr>
 			<th>Sl.no</th>
+			<th>Card Type</th>
+			<th>Card Color</th>
 			<th>Product Name</th>
-			<th>Manufacture Date</th>
-			<th>Expiry Date</th>
 			<th>Quantity</th>
-			<th>Actual Price</th>
-			<th>Available Price</th>
+			<th>Price</th>
 			<th>Update</th>
 			<th>Delete</th>
 		</tr>
 		{% for i in dd %}
 		<tr>
 			<td>{{ forloop.counter }}</td>
-			<td>{{ i.supplycoproduct_name }}</td>
-			<td>{{ i.manufacture_date }}</td>
-			<td>{{ i.expiry_date }}</td>
-			<td>{{ i.supplyco_quantity }}</td>
-			<td>{{ i.actual_price }}</td>
-			<td>{{ i.available_price }}</td>
-			<td><a href="/Supplyco_product/update/{{i.supplycoproduct_id}}/#bb" class="btn btn-update">Update</a></td>
-			<td><a href="{% url 'ff' i.supplycoproduct_id %}/#bb" class="btn btn-delete">Delete</a></td>
+			<td>{{ i.rationproduct.card_type }}</td>
+			<td>{{ i.rationproduct.card_color }}</td>
+			<td>{{ i.rationproduct.product_name }}</td>
+			<td>{{ i.stock_quantity }}</td>
+			<td>{{ i.stock_price }}</td>
+			<td><a href="{% url 'kk' i.stock_id %}#bb" class="btn btn-update">Update</a></td>
+			<td><a href="{% url 'cc' i.stock_id %}#bb" class="btn btn-delete">Delete</a></td>
 		</tr>
 		{% endfor %}
 	</table>

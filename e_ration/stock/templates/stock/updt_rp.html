@@ -1,0 +1,65 @@
+{% extends 'Temp/shopkeeper.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Ration Product</title>
+</head>
+<body>
+<center>
+    <br><br>
+    <h1>Update Ration Product</h1><br>
+    <form method="POST">
+        {% csrf_token %}
+        <center>
+            <table><br><br><br>
+                <div class="col-lg-5">
+                    <div class="card-body rounded-bottom bg-dark p-5" id="all_registered">
+                        <h1 style="font-family: 'Times New Roman';color: peru" align="center">Update</h1><br>
+
+                        <!-- Read-Only Card Type -->
+                        <div class="form-group">
+                            <label for="card_type" style="color: white;">Card Type</label>
+                            <input type="text" id="card_type" value="{{ card_type }}" class="form-control p-4" style="font-family: 'Times New Roman'" disabled>
+                        </div><br>
+
+                        <!-- Read-Only Card Color -->
+                        <div class="form-group">
+                            <label for="card_color "style="color: white;">Card Color</label>
+                            <input type="text" id="card_color" value="{{ card_color }}" class="form-control p-4" style="font-family: 'Times New Roman'" disabled>
+                        </div><br>
+
+                        <!-- Read-Only Product Name -->
+                        <div class="form-group">
+                            <label for="product_name" style="color: white;">Product Name</label>
+                            <input type="text" id="product_name" value="{{ product_name }}" class="form-control p-4" style="font-family: 'Times New Roman'" disabled>
+                        </div><br>
+
+                        <!-- Editable Stock Quantity -->
+                        <div class="form-group">
+                            <label for="stock_quantity"style="color: white;">Quantity</label>
+                            <input type="number" id="stock_quantity" name="stock_quantity" value="{{ dd.stock_quantity }}" class="form-control p-4" style="font-family: 'Times New Roman'" required>
+                        </div><br>
+
+                        <!-- Editable Stock Price -->
+                        <div class="form-group">
+                            <label for="stock_price"style="color: white;">Price</label>
+                            <input type="text" id="stock_price" name="stock_price" value="{{ dd.stock_price }}" class="form-control p-4" style="font-family: 'Times New Roman'" required>
+                        </div><br>
+
+                        <!-- Update Button -->
+                        <div>
+                            <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Update</button>
+                        </div>
+
+                    </div>
+                </div>
+            </table>
+        </center>
+    </form>
+</center>
+</body>
+</html>
+{% endblock %}

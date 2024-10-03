@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404
 from Ration_product.models import RationProduct
 
 
@@ -28,7 +29,6 @@ def mrp(request):
     }
     return render(request,'Ration_product/manage_Rationp.html',context)
 
-
 def update(request,idd):
     obj = RationProduct.objects.get(rationproduct_id=idd)
     context = {
@@ -45,7 +45,13 @@ def update(request,idd):
         return  mrp(request)
     return render(request,'Ration_product/update.html',context)
 
-def delete(request,idd):
-    obj=RationProduct.objects.get(rationproduct_id=idd)
+
+def delete(request, idd):
+    # Use get_object_or_404 to handle object retrieval
+    obj = get_object_or_404(RationProduct, rationproduct_id=idd)
+    
+    # Delete the object
     obj.delete()
-    return  mrp(request)
+    return mrp(request)
+    # Redirect to a success page or list view
+    #return redirect('Ration_product/manage_Rationp.html')  # Update with your actual view name

@@ -7,7 +7,7 @@ class SupplycoProduct(models.Model):
     supplycoproduct_name = models.CharField(max_length=100)
     expiry_date = models.DateField(db_column='expiry date')  # Field renamed to remove unsuitable characters.
     manufacture_date = models.DateField()
-    quantity = models.IntegerField()
+    supplyco_quantity = models.IntegerField()
     actual_price = models.IntegerField()
     available_price = models.IntegerField()
 

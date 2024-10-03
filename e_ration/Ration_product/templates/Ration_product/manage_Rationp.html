@@ -26,7 +26,10 @@
             <td>{{ i.quantity}}</td>
             <td>{{ i.price}}</td>
 			<td><a href="/Ration_product/update/{{i.rationproduct_id}}/#bb" class="btn btn-outline-dark">Update</a></td>
-            <td><a href="{% url 'bb' i.rationproduct_id %}/#bb" class="btn btn-outline-dark">Delete</a></td>                
+            <td><a href="{% url 'bb' i.rationproduct_id %}/#bb" class="btn btn-outline-dark">Delete</a></td>  
+
+			
+              
 		</tr>
         {% endfor %}
 	</table>

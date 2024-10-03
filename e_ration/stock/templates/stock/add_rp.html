@@ -1,0 +1,105 @@
+{% extends 'Temp/shopkeeper.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage Product</title>
+    <style>
+        select {
+            color: black;  /* Ensure text is black for visibility */
+        }
+
+        select:focus {
+            background-color: white; /* Ensure background is white when focused */
+        }
+    </style>
+    
+    <script>
+        // Function to update the selected values in input fields
+        function updateInputField(selectedValue, inputId) {
+            document.getElementById(inputId).value = selectedValue;
+        }
+    </script>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <center>
+        <table><br><br><br>
+            <div class="col-lg-5">
+                <div class="card-body rounded-bottom bg-dark p-5" id="add_student">
+                    <h1 style="font-family: 'Times New Roman';color: peru" align="center">Add Ration Stock</h1><br>
+
+                    <!-- Card Type Dropdown -->
+                    <div class="form-group">
+                        <label style="color:white">Card Type</label>
+                        <select name="card_type" class="form-control p-4" style="font-family: 'Times New Roman'; color: black;" required="required" 
+                                onchange="updateInputField(this.value, 'card_type_display')">
+                            <option value="">Select Card Type</option>
+                            {% for card_type in card_types %}
+                                <option value="{{ card_type }}">{{ card_type }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- Display the selected Card Type -->
+                        <input type="text" id="card_type_display" class="form-control p-4" style="font-family: 'Times New Roman'; margin-top: 10px;" placeholder="Selected Card Type" readonly>
+                    </div><br>
+
+                    <!-- Card Color Dropdown -->
+                    <div class="form-group">
+                        <label style="color:white">Card Color</label>
+                        <select name="card_color" class="form-control p-4" style="font-family: 'Times New Roman'; color: black;" required="required" 
+                                onchange="updateInputField(this.value, 'card_color_display')">
+                            <option value="">Select Card Color</option>
+                            {% for card_color in card_colors %}
+                                <option value="{{ card_color }}">{{ card_color }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- Display the selected Card Color -->
+                        <input type="text" id="card_color_display" class="form-control p-4" style="font-family: 'Times New Roman'; margin-top: 10px;" placeholder="Selected Card Color" readonly>
+                    </div><br>
+
+                    <!-- Product Name Dropdown -->
+                    <div class="form-group">
+                        <label style="color:white">Product Name</label>
+                        <select name="product_name" class="form-control p-4" style="font-family: 'Times New Roman'; color: black;" required="required" 
+                                onchange="updateInputField(this.value, 'product_name_display')">
+                            <option value="">Select Product</option>
+                            {% for product in products %}
+                                <option value="{{ product }}">{{ product }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- Display the selected Product Name -->
+                        <input type="text" id="product_name_display" class="form-control p-4" style="font-family: 'Times New Roman'; margin-top: 10px;" placeholder="Selected Product Name" readonly>
+                    </div><br>
+
+                    <!-- Quantity Field -->
+                    <div class="form-group">
+                        <label style="color:white">Quantity</label>
+                        <input type="text" name="quantity" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Quantity" required="required" />
+                    </div><br>
+
+                    <!-- Price Field -->
+                    <div class="form-group">
+                        <label style="color:white">Price</label>
+                        <input type="text" name="price" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Price" required="required" />
+                    </div><br>
+
+                    <div>
+                        <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Add</button>
+                    </div><br>
+                </div>
+            </div>
+        </table>
+    </center>
+
+    {% if msg != '' %}
+        <script>
+            alert("{{ msg }}");
+        </script>
+    {% endif %}
+</form>
+</body>
+</html>
+{% endblock %}

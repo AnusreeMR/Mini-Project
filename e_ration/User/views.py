@@ -44,4 +44,4 @@ def update(request,idd):
 def delete(request,idd):
     obj=User.objects.get(user_id=idd)
     obj.delete()
-    return vuser(request)
+    return mu(request)

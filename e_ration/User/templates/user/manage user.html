@@ -12,6 +12,7 @@
 <h1>MANAGE USER</h1><br>
 	<table border="1" class="table table-striped">
 		<tr>
+            <td>Sl.no</td>
 			<td>Card_type </td>
 			<td>Card_color</td>
 			<td>Head_name</td>
@@ -27,6 +28,7 @@
 		</tr>
 		{% for i in dd %}
 		<tr>
+            <td>{{ forloop.counter}}</td>
 			<td>{{ i.card_type }}</td>
 			<td>{{ i.card_color}}</td>
             <td>{{ i.head_name}}</td>

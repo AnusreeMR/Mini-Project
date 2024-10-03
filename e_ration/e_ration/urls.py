@@ -26,6 +26,7 @@ urlpatterns = [
     url('Supplyco_product/',include('Supplyco_product.url')),
     url('ration/',include('ration_registration.url')),
     url('User/',include('User.url')),
+    url('stock/',include('stock.url')),
     url('$',views.home),
     
 ]

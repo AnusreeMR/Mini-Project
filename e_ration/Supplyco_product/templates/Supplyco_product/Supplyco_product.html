@@ -5,65 +5,100 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manage product </title>
-    </head>
+    <title>Manage product</title>
+    <style>
+        .error-message {
+            color: red;
+            font-family: 'Times New Roman';
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        function validateExpiryDate() {
+            var manufactureDate = new Date(document.getElementsByName('manufacture_date')[0].value);
+            var expiryDate = new Date(document.getElementsByName('expiry_date')[0].value);
+            var errorMessage = document.getElementById("expiry-error");
+
+            if (expiryDate < manufactureDate) {
+                errorMessage.textContent = "Expiry date cannot be earlier than the manufacturing date.";
+            } else {
+                errorMessage.textContent = ""; // Clear the error if the dates are valid
+            }
+        }
+
+        window.onload = function() {
+            // Attach the event listeners to both fields to trigger validation on input
+            document.getElementsByName('manufacture_date')[0].addEventListener('change', validateExpiryDate);
+            document.getElementsByName('expiry_date')[0].addEventListener('change', validateExpiryDate);
+        }
+
+        .error { color: red; display: none; }
+    </script>
+</head>
 <body>
 <form method="post">
     {% csrf_token %}
     <center>
-        {% comment %} <button id="add_student" class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'">Add Student</button>
-        <button id="all_registered" class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'">All Registered Students</button> {% endcomment %}
         <table><br><br><br>
             <div class="col-lg-5">
                 <div class="card-body rounded-bottom bg-dark p-5" id="add_student">
-                    <h1 style="font-family: 'Times New Roman';color: peru" align="center">Add Supplco product</h1><br>
+                    <h1 style="font-family: 'Times New Roman';color: peru" align="center">Add Supplyco Product</h1><br>
 
                     <div class="form-group">
                         <label style="color:white">Product Name</label>
-                        <input type="text" name="Product Name" class="form-control p-4" style="font-family: 'Times New Roman'" 
-                               placeholder="Product Name" 
-                               required="required" />
-                    </div><br>
+                        <input type="text" name="product_name" class="form-control p-4" 
+                               style="font-family: 'Times New Roman'" placeholder="Product Name" 
+                               required="required" pattern="[A-Za-z\s]+" 
+                               title="Product name must only contain letters and be at least 3 characters long." />
+                    </div>
+                    <br>
+                    
 
                     <div class="form-group">
                         <label style="color:white">Manufacture Date</label>
-                        <input type="date" name="Manufacture Date" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Manufacture Date" required="required" />
+                        <input type="date" name="manufacture_date" id="manufacture_date" min="{{ dt }}" class="form-control p-4" style="font-family: 'Times New Roman'" 
+                               placeholder="Manufacture Date" required="required" />
                     </div><br>
 
-                    <!-- Department Field -->
                     <div class="form-group">
                         <label style="color:white">Expiry Date</label>
-                        <input type="date" name="Expiry Date" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Expiry Date" required="required" />
-                    </div><br>
-
-                     <!-- Department Field -->
-                     <div class="form-group">
-                        <label style="color:white">Quantity</label>
-                        <input type="text" name="Quantity" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Quantity" required="required" />
-                    </div><br>
-
-                     <!-- Department Field -->
-                     <div class="form-group">
-                        <label style="color:white">Actual price</label>
-                        <input type="text" name="Actual price" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Actual price" required="required" />
+                        <input type="date" name="expiry_date" id="expiry_date" min="{{ dt }}" class="form-control p-4" style="font-family: 'Times New Roman'" 
+                               placeholder="Expiry Date" required="required" />
+                        <span id="expiry-error" class="error-message"></span> <!-- Error message span -->
                     </div><br>
 
                     <div class="form-group">
-                        <label style="color:white">Available price</label>
-                        <input type="text" name="Available price" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Actual price" required="required" />
+                        <label style="color:white">Quantity</label>
+                        <input type="number" name="quantity" class="form-control p-4" style="font-family: 'Times New Roman'" 
+                               placeholder="Quantity" required="required" />
                     </div><br>
+
+                    <div class="form-group">
+                        <label style="color:white">Actual Price</label>
+                        <input type="number" name="actual_price" id="actual_price" class="form-control p-4" 
+                               style="font-family: 'Times New Roman'" placeholder="Actual Price" required />
+                        <small class="error" id="priceError">Actual price must not be less than 0.</small>
+                    </div>
+            
+                    <!-- Available Price Field -->
+                    <div class="form-group">
+                        <label style="color:white">Available Price</label>
+                        <input type="number" name="available_price" id="available_price" class="form-control p-4" 
+                               style="font-family: 'Times New Roman'" placeholder="Available Price" required />
+                        <small class="error" id="availablePriceError">Available price must not be less than 0.</small>
+                    </div>
+
                     <div>
-                        <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Add </button>
+                        <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Add Product</button>
                     </div><br>
                 </div>
-                
             </div>
         </table>
     </center>
     {% if msg != '' %}
-            <script>
-                alert("{{ msg }}");
-            </script>
+        <script>
+            alert("{{ msg }}");
+        </script>
     {% endif %}
 </form>
 </body>

@@ -18,26 +18,32 @@
         
                     <!-- Joining Date Field -->
                     <div class="form-group">
+                        <label for="Supplycoproduct Name"style="color: white;">Supplycoproduct Name</label>
                         <input type="text" name="sp" value="{{ dd.supplycoproduct_name }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="product_name" required="required" />
                     </div><br>
                     
                     <div class="form-group">
-                        <input type="date" name="md" value="{{ dd.manufacture_date }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="manufacture_date" required="required" />
+                        <label for="card_type"style="color: white;">Manufacture Date</label>
+                        <input type="date" name="md" value="{{ dd.manufacture_date|date:'Y-m-d' }}" min="{{ dt }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="manufacture_date" required="required" />
                     </div><br>
 
                     <div class="form-group">
-                        <input type="date" name="ed" value="{{ dd.expiry_date }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="expiry_date" required="required" />
+                        <label for="Manufacture Date"style="color: white;">Expiry Date</label>
+                        <input type="date" name="ed" value="{{ dd.expiry_date|date:'Y-m-d' }}" min="{{ dt }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="expiry_date" required="required" />
                     </div><br>
 
                     <div class="form-group">
-                            <input type="text" name="qt" value="{{ dd.quantity }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="quantity" required="required" />
+                            <label for="Expiry Date"style="color: white;">Quantity</label>
+                            <input type="text" name="qt" value="{{ dd.supplyco_quantity }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="quantity" required="required" />
                     </div><br>
-                    <div class="form-group">
-                        <input type="text" name="acp" value="{{ dd.actual_price }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="actual_price" required="required" />
-                </div><br> 
                 <div class="form-group">
-                    <input type="text" name="avp" value="{{ dd.available_price }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="available_price" required="required" />
-            </div><br>                
+                    <label for="Actual price"style="color: white;">Actual price</label>
+                    <input type="text" name="acp" value="{{ dd.actual_price }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="available_price" required="required" />
+            </div><br>
+            <div class="form-group">
+                <label for="Actual price"style="color: white;">Available price</label>
+                <input type="text" name="avp" value="{{ dd.available_price }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="available_price" required="required" />
+        </div> <br>              
                     <!-- Update Button -->
                     <div>
                         <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Update</button>

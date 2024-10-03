@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'login.apps.LoginConfig',
     'Ration_product.apps.RationProductConfig',
     'Supplyco_product.apps.SupplycoProductConfig',
+    'stock.apps.StockConfig',
     'ration_registration.apps.RationRegistrationConfig',
     'User.apps.UserConfig',
     'Temp.apps.TempConfig',
