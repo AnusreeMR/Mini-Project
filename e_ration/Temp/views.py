@@ -11,5 +11,9 @@ def admin(request):
 def shopkeeper(request):
     return render(request,'Temp/shopkeeper.html')
 
+def customer(request):
+    return render(request,'Temp/user.html')
+
 def register(request):
     return render(request,'Temp/register.html')
+

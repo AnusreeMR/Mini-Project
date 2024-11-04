@@ -1,0 +1,142 @@
+{% extends 'Temp/user.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Ration Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .blue-card { background-color: #cce5ff; }   /* Light Blue */
+        .white-card { background-color: #ffffff; }  /* White */
+        .yellow-card { background-color: #fff3cd; } /* Pale Yellow */
+        .pink-card { background-color: #f8d7da; } /* Dark Pink */
+        .no-products {
+            color: #dc3545;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Ration Shop</h1>
+    <form method="GET" action="{% url 'search_ration_shop' %}#bb">
+        <label for="shop_id">Select a Ration Shop:</label>
+        <select name="shop_id" id="shop_id" required>
+            <option value="" disabled selected>Select a Ration Shop</option>
+            {% for shop in shops %}
+                <option value="{{ shop.shop_id }}" {% if shop.shop_id == shop_id %}selected{% endif %}>{{ shop.shop_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="product_type">Select Product Type:</label>
+        <select name="product_type" id="product_type" required onchange="this.form.submit();">
+            <option value="" disabled selected>Select a Product Type</option>
+            <option value="ration" {% if product_type == 'ration' %}selected{% endif %}>Ration Products</option>
+            <option value="supplyco" {% if product_type == 'supplyco' %}selected{% endif %}>Supplyco Products</option>
+        </select>
+
+        {% if product_type == 'ration' %}
+            <label for="card_type">Select Card Type:</label>
+            <select name="card_type" id="card_type">
+                <option value="" disabled selected>Select a Card Type</option>
+                {% for card_type in card_types %}
+                    <option value="{{ card_type }}" {% if card_type == selected_card_type %}selected{% endif %}>{{ card_type }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="card_color">Select Card Color:</label>
+            <select name="card_color" id="card_color">
+                <option value="" disabled selected>Select a Card Color</option>
+                {% for card_color in card_colors %}
+                    <option value="{{ card_color }}" {% if card_color == selected_card_color %}selected{% endif %}>{{ card_color }}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+
+        <button type="submit">Search</button>
+    </form>
+
+    {% if shop_id and product_type %}
+    {% if dd %}
+        <h2>Available Products:</h2>
+        <div class="product-container">
+            {% for i in dd %}
+                <div class="product-card 
+                    {% if i.card_color == 'blue' %}blue-card{% elif i.card_color == 'white' %}white-card
+                    {% elif i.card_color == 'yellow' %}yellow-card{% elif i.card_color == 'pink' %}pink-card{% endif %}">
+                    <h3>{{ i.name }}</h3> <!-- Adjust for the correct key name -->
+                    {% if product_type == 'ration' %}
+                        <p>Card Type: {{ i.card_type }}</p> <!-- Card Type -->
+                        <p>Card Color: {{ i.card_color }}</p> <!-- Card Color -->
+                        <p>Quantity: {{ i.quantity }}</p> <!-- Quantity for Ration Products -->
+                        <p>Price: {{ i.price }}</p> <!-- Price for Ration Products -->
+                    {% elif product_type == 'supplyco' %}
+                        <p>Actual Price: {{ i.actual_price }}</p> <!-- Actual Price for Supplyco Products -->
+                        <p>Available Price: {{ i.available_price }}</p> <!-- Available Price for Supplyco Products -->
+                        <p>Quantity: {{ i.quantity }}</p> <!-- Adjusted to match the key in the context -->
+                        <a href="{% url 'add_to_cart' idd=i.supplycoproduct_id %}#bb" class="btn btn-info">Add to Cart</a> 
+                        {% endif %}
+                </div>
+            {% endfor %}
+        </div>            
+    {% else %}
+        <p class="no-products">No products found for the selected shop.</p>
+    {% endif %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

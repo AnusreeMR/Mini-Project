@@ -14,11 +14,15 @@
                     <img class="w-25" src="/static/img/tt.png" alt="Image">
                         <h1 style="font-family: 'Times New Roman';color: peru" align="center">RATIONSHOP REGISTER</h1><br>
  
-                    <div class="form-group">
-                        <label style="color:white">Shop ID</label>
-                    <input type="text" name="shopid" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Shopkeeer ID" required="" />
-                    <span style="color: red;">{{ shopid_error }}</span>
-                </div>
+                        <div class="form-group">
+                            <label style="color:white">Shop ID</label>
+                            <input type="text" name="shopid" class="form-control p-4" 
+                                   style="font-family: 'Times New Roman';" placeholder="Shopkeeper ID" 
+                                   required="required" pattern="\d{3,}" 
+                                   title="Shop ID must contain only numbers and be at least 3 digits long." />
+                            <span style="color: red;">{{ shopid_error }}</span>
+                        </div>
+                        
                     <div class="form-group">
                         <label style="color:white">Shop Name</label>
                         <input type="text" name="shopname" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="ShopName" required="required" pattern="[A-Za-z\s]+" 
@@ -46,11 +50,13 @@
                         <span style="color: red;">{{ email_error }}</span>
                     </div>
                     <div class="form-group">
-                        <label style="color:white">Muncipality</label>
-                        <input type="text" name="muncipality" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Muncipality" required="required" pattern="[A-Za-z\s]+" 
-                        title="Only alphabets and spaces are allowed." />
-                        {% comment "" %}<input type="password" name="password" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your password" minlength="8" maxlength="8" required="required" />{% endcomment %}
-                    </div>
+                        <label style="color:white">Municipality</label>
+                        <input type="text" name="muncipality" class="form-control p-4" 
+                               style="font-family: 'Times New Roman'" placeholder="Municipality" 
+                               required="required" pattern="[A-Za-z\s]+" 
+                               title="Only alphabets and spaces are allowed." 
+                               value="Mukkom" readonly />  <!-- Read-only value -->
+                    </div>                    
                     <br>
                     <div>
                         <button class="btn btn-primary btn-block p-3"style="font-family: 'Times New Roman'" type="submit">REGISTER</button>

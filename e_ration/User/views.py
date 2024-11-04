@@ -1,20 +1,43 @@
 from django.shortcuts import render
 from User.models import User
+
 # Create your views here.
 
 def vuser(request):
-    obj=User.objects.all()
-    context={
-        'dd':obj
+    search_query = request.GET.get('search', '')
+    if search_query:
+        # Filter based on card_id or head_name
+        obj = User.objects.filter(card_id__icontains=search_query) | User.objects.filter(head_name__icontains=search_query)
+    else:
+        obj = User.objects.all()
+        
+    context = {
+        'dd': obj
     }
-    return render(request,'User/view_user.html',context)
+    return render(request, 'User/view_user.html', context)
+
 
 def mu(request):
-    obj=User.objects.all()
-    context={
-        'dd':obj
+    # Get search parameters from the request
+    card_id = request.GET.get('card_id')
+    head_name = request.GET.get('head_name')
+    
+    # Filter the User objects based on the search parameters
+    if card_id or head_name:
+        obj = User.objects.all()
+        if card_id:
+            obj = obj.filter(card_id__icontains=card_id)
+        if head_name:
+            obj = obj.filter(head_name__icontains=head_name)
+    else:
+        obj = User.objects.all()
+
+    # Pass the filtered objects to the template
+    context = {
+        'dd': obj
     }
-    return render(request,'user/manage user.html',context)
+    return render(request, 'user/manage user.html', context)
+
 
 
 def update(request,idd):
@@ -24,8 +47,6 @@ def update(request,idd):
     }
     if request.method=="POST":
         obj=User.objects.get(user_id=idd)
-       # obj.user_id=request.POST.get('jd')
-        #obj.card_id=request.POST.get('mn')
         obj.card_type=request.POST.get('ct')
         obj.card_color=request.POST.get('cc')
         obj.head_name=request.POST.get('hn')

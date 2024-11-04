@@ -1,0 +1,47 @@
+{% extends 'Temp/shopkeeper.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>View Ration Products</title>
+</head>
+<body>
+<center><br><br>
+    <h1>VIEW RATION PRODUCTS</h1><br>
+
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'vcard' %}/#bb">
+        <input type="text" name="card_type" placeholder="Card Type" style="font-family: 'Times New Roman'; padding: 5px; width: 150px;">
+        <input type="text" name="card_color" placeholder="Card Color" style="font-family: 'Times New Roman'; padding: 5px; width: 150px;">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <br>
+
+    <table border="1" class="table table-striped">
+        <tr style="background-color: #343a40; color: white;">
+            <td>Sl.no</td>
+            <td>Card_type</td>
+            <td>Card_color</td>
+            <td>Product Name</td>
+            <td>Quantity</td>
+            <td>Unit</td>
+            <td>Price</td>
+        </tr>
+        {% for i in dd %}
+        <tr>
+            <td style="color: black;">{{ forloop.counter }}</td>
+            <td style="color: black;">{{ i.card_type }}</td>
+            <td style="color: black;">{{ i.card_color }}</td>
+            <td style="color: black;">{{ i.product_name }}</td>
+            <td style="color: black;">{{ i.quantity }}</td>
+            <td style="color: black;">{{ i.unit }}</td>
+            <td style="color: black;">{{ i.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>
+{% endblock %}

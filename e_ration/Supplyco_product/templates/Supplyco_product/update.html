@@ -6,6 +6,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update or Delete Ration product</title>
+    <style>
+        .error-message {
+            color: red;
+            font-family: 'Times New Roman';
+            font-size: 14px;
+        }
+        .error {
+            color: red;
+            font-family: 'Times New Roman';
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
 <form method="post">
@@ -18,18 +30,23 @@
         
                     <!-- Joining Date Field -->
                     <div class="form-group">
-                        <label for="Supplycoproduct Name"style="color: white;">Supplycoproduct Name</label>
-                        <input type="text" name="sp" value="{{ dd.supplycoproduct_name }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="product_name" required="required" />
+                        <label for="Supplycoproduct Name" style="color: white;">Supplycoproduct Name</label>
+                        <input type="text" name="sp" value="{{ dd.supplycoproduct_name }}" class="form-control p-4" 
+                               style="font-family: 'Times New Roman'" placeholder="Product Name" required="required" 
+                               pattern="[A-Za-z\s]+" title="Product name must only contain letters and be at least 3 characters long." />
+                        {% if error_product_name %}
+                            <span class="error-message" style="color:red;">{{ error_product_name }}</span>
+                        {% endif %}
                     </div><br>
                     
                     <div class="form-group">
                         <label for="card_type"style="color: white;">Manufacture Date</label>
-                        <input type="date" name="md" value="{{ dd.manufacture_date|date:'Y-m-d' }}" min="{{ dt }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="manufacture_date" required="required" />
+                        <input type="date" name="md" value="{{ dd.manufacture_date|date:'Y-m-d' }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="manufacture_date" required="required" />
                     </div><br>
 
                     <div class="form-group">
                         <label for="Manufacture Date"style="color: white;">Expiry Date</label>
-                        <input type="date" name="ed" value="{{ dd.expiry_date|date:'Y-m-d' }}" min="{{ dt }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="expiry_date" required="required" />
+                        <input type="date" name="ed" value="{{ dd.expiry_date|date:'Y-m-d' }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="expiry_date" required="required" />
                     </div><br>
 
                     <div class="form-group">

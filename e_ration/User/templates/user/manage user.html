@@ -3,50 +3,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage User</title>
+    <style>
+        /* Compact table width */
+        .table {
+            width: 70%;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        /* Reduce padding for table cells */
+        .table td, .table th {
+            padding: 5px;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+        .table th:nth-child(1), .table td:nth-child(1) { width: 3%; }
+        .table th:nth-child(2), .table td:nth-child(2) { width: 8%; }
+        /* Adjust other column widths as needed */
+    </style>
 </head>
 <body>
 <center><br><br>
-<h1>MANAGE USER</h1><br>
-	<table border="1" class="table table-striped">
-		<tr>
-            <td>Sl.no</td>
-			<td>Card_type </td>
-			<td>Card_color</td>
-			<td>Head_name</td>
-            <td>annual_income</td>
-            <td>occupation</td>
-            <td>age</td>
-            <td>no_of_family_member</td>
-            <td>no_of_adults</td>
-            <td>no_of_family_children</td>
-            <td>address</td>
-            <td>mobile_number</td>
-            
-		</tr>
-		{% for i in dd %}
-		<tr>
-            <td>{{ forloop.counter}}</td>
-			<td>{{ i.card_type }}</td>
-			<td>{{ i.card_color}}</td>
-            <td>{{ i.head_name}}</td>
-            <td>{{ i.annual_income}}</td>
-            <td>{{ i.occupation}}</td>
-            <td>{{ i.age}}</td>
-            <td>{{ i.no_of_family_member}}</td>
-            <td>{{ i.no_of_adults}}</td>
-            <td>{{ i.no_of_family_children}}</td>
-            <td>{{ i.address}}</td>
-            <td>{{ i.mobile_number}}</td>
-			<td><a href="{% url 'upd' idd=i.user_id %}/#bb" class="btn btn-outline-dark">Update</a></td>
-            <td><a href="{% url 'del' idd=i.user_id %}/#bb" class="btn btn-outline-dark">Delete</a></td>                
-		</tr>
-        {% endfor %}
-	</table>
-</center>
+    <h1>MANAGE USER</h1><br>
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'mu' %}/#bb">
+        <input type="text" name="card_id" placeholder="Search by Card ID">
+        <input type="text" name="head_name" placeholder="Search by Head Name">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <br>
 
+    <table border="1" class="table table-striped">
+        <tr style="background-color: #343a40; color: white;">
+            <th>Sl No</th>
+            <th>Card ID</th>
+            <th>Card Type</th>
+            <th>Card Color</th>
+            <th>Head Name</th>
+            <th>Annual Income</th>
+            <th>Occupation</th>
+            <th>Age</th>
+            <th>Family Members</th>
+            <th>No. of Adults</th>
+            <th>No. of Children</th>
+            <th>Address</th>
+            <th>Mobile Number</th>
+            <th>Actions</th>
+        </tr>
+        {% for i in dd %}
+        <tr>
+            <td style="color:black">{{ forloop.counter }}</td>
+            <td style="color:black">{{ i.card_id }}</td>
+            <td style="color:black">{{ i.card_type }}</td>
+            <td style="color:black">{{ i.card_color }}</td>
+            <td style="color:black">{{ i.head_name }}</td>
+            <td style="color:black">{{ i.annual_income }}</td>
+            <td style="color:black">{{ i.occupation }}</td>
+            <td style="color:black">{{ i.age }}</td>
+            <td style="color:black">{{ i.no_of_family_member }}</td>
+            <td style="color:black">{{ i.no_of_adults }}</td>
+            <td style="color:black">{{ i.no_of_family_children }}</td>
+            <td style="color:black">{{ i.address }}</td>
+            <td style="color:black">{{ i.mobile_number }}</td>
+            <td>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'upd' idd=i.user_id %}/#bb" style="color:white;" class="btn btn-info btn-sm">Update</a>
+                    <a href="{% url 'del' idd=i.user_id %}/#bb" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
 </body>
 </html>
 {% endblock %}

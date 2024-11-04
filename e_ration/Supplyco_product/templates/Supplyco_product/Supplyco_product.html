@@ -13,30 +13,9 @@
             font-size: 14px;
         }
     </style>
-    <script>
-        function validateExpiryDate() {
-            var manufactureDate = new Date(document.getElementsByName('manufacture_date')[0].value);
-            var expiryDate = new Date(document.getElementsByName('expiry_date')[0].value);
-            var errorMessage = document.getElementById("expiry-error");
-
-            if (expiryDate < manufactureDate) {
-                errorMessage.textContent = "Expiry date cannot be earlier than the manufacturing date.";
-            } else {
-                errorMessage.textContent = ""; // Clear the error if the dates are valid
-            }
-        }
-
-        window.onload = function() {
-            // Attach the event listeners to both fields to trigger validation on input
-            document.getElementsByName('manufacture_date')[0].addEventListener('change', validateExpiryDate);
-            document.getElementsByName('expiry_date')[0].addEventListener('change', validateExpiryDate);
-        }
-
-        .error { color: red; display: none; }
-    </script>
 </head>
 <body>
-<form method="post">
+<form method="post" onsubmit="return validateForm();">
     {% csrf_token %}
     <center>
         <table><br><br><br>
@@ -49,45 +28,46 @@
                         <input type="text" name="product_name" class="form-control p-4" 
                                style="font-family: 'Times New Roman'" placeholder="Product Name" 
                                required="required" pattern="[A-Za-z\s]+" 
-                               title="Product name must only contain letters and be at least 3 characters long." />
+                               title="Product name must only contain letters and be at least 3 characters long."
+                               {% if error_product_name %} style="border-color: red;" {% endif %} />
+                        {% if error_product_name %}
+                            <span class="error-message">{{ error_product_name }}</span>
+                        {% endif %}
                     </div>
-                    <br>
                     
-
                     <div class="form-group">
                         <label style="color:white">Manufacture Date</label>
                         <input type="date" name="manufacture_date" id="manufacture_date" min="{{ dt }}" class="form-control p-4" style="font-family: 'Times New Roman'" 
                                placeholder="Manufacture Date" required="required" />
-                    </div><br>
+                    </div>
 
                     <div class="form-group">
                         <label style="color:white">Expiry Date</label>
                         <input type="date" name="expiry_date" id="expiry_date" min="{{ dt }}" class="form-control p-4" style="font-family: 'Times New Roman'" 
                                placeholder="Expiry Date" required="required" />
-                        <span id="expiry-error" class="error-message"></span> <!-- Error message span -->
-                    </div><br>
+                        <span id="expiry-error" class="error-message"></span> 
+                    </div>
 
                     <div class="form-group">
                         <label style="color:white">Quantity</label>
                         <input type="number" name="quantity" class="form-control p-4" style="font-family: 'Times New Roman'" 
                                placeholder="Quantity" required="required" />
-                    </div><br>
+                    </div>
 
                     <div class="form-group">
                         <label style="color:white">Actual Price</label>
-                        <input type="number" name="actual_price" id="actual_price" class="form-control p-4" 
-                               style="font-family: 'Times New Roman'" placeholder="Actual Price" required />
-                        <small class="error" id="priceError">Actual price must not be less than 0.</small>
+                        <input type="text" name="actual_price" id="actual_price" class="form-control p-4" 
+                               style="font-family: 'Times New Roman'" placeholder="Actual Price" required 
+                               pattern="^\d*\.?\d*$" title="Please enter a valid number." />
                     </div>
-            
-                    <!-- Available Price Field -->
+                    
                     <div class="form-group">
                         <label style="color:white">Available Price</label>
-                        <input type="number" name="available_price" id="available_price" class="form-control p-4" 
-                               style="font-family: 'Times New Roman'" placeholder="Available Price" required />
-                        <small class="error" id="availablePriceError">Available price must not be less than 0.</small>
-                    </div>
-
+                        <input type="text" name="available_price" id="available_price" class="form-control p-4" 
+                               style="font-family: 'Times New Roman'" placeholder="Available Price" required 
+                               pattern="^\d*\.?\d*$" title="Please enter a valid number." />
+                    </div>                    
+                    <br>
                     <div>
                         <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Add Product</button>
                     </div><br>
@@ -95,12 +75,37 @@
             </div>
         </table>
     </center>
-    {% if msg != '' %}
-        <script>
-            alert("{{ msg }}");
-        </script>
+    {% if msg %}
+    <script>
+        alert("{{ msg }}");
+    </script>
     {% endif %}
 </form>
+
+<script>
+    function validateForm() {
+        // Reset the error message
+        document.getElementById('expiry-error').textContent = '';
+
+        const manufactureDate = new Date(document.getElementById('manufacture_date').value + 'T00:00:00');
+        const expiryDate = new Date(document.getElementById('expiry_date').value + 'T00:00:00');
+        let valid = true;
+
+        // Validate Expiry Date
+        if (expiryDate < manufactureDate) {
+            document.getElementById('expiry-error').textContent = "Expiry date cannot be earlier than the manufacturing date.";
+            valid = false;
+        }
+
+        return valid; // Prevent form submission if invalid
+    }
+
+    window.onload = function() {
+        // Attach event listeners to validate expiry date on input
+        document.getElementById('manufacture_date').addEventListener('change', validateForm);
+        document.getElementById('expiry_date').addEventListener('change', validateForm);
+    }
+</script>
 </body>
 </html>
 {% endblock %}

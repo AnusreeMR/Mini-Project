@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'stock.apps.StockConfig',
     'ration_registration.apps.RationRegistrationConfig',
     'User.apps.UserConfig',
+    'customer.apps.CustomerConfig',
+    'product.apps.ProductConfig',
     'Temp.apps.TempConfig',
 ]
 

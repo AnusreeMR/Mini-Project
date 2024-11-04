@@ -1,0 +1,147 @@
+{% extends 'Temp/user.html' %}
+{% block base %}
+<!-- product_search.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Search</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+    
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+    
+        input[type="text"] {
+            width: 300px;
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+    
+        input[type="text"]:focus {
+            border: 2px solid #3498db;
+            outline: none;
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+        }
+    
+        button {
+            padding: 12px 20px;
+            margin-left: 15px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+    
+        button:hover {
+            background: linear-gradient(135deg, #2980b9, #1f618d);
+            box-shadow: 0 6px 12px rgba(41, 128, 185, 0.3);
+        }
+    
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 30px;
+            font-size: 28px;
+        }
+    
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        li {
+            background-color: #ffffff;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            width: 80%;
+            max-width: 600px;
+        }
+    
+        li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+    
+        p {
+            text-align: center;
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .search-section {
+            background-color: #262730; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .search-section input[type="text"] {
+            background-color: #ffffff; /* White input background for contrast */
+            color: #333333; /* Dark text */
+        }
+        
+        .search-section button {
+            background: linear-gradient(135deg, #3498db, #2980b9); /* Button gradient */
+        }
+        
+        .search-section h2, .search-section p {
+            color: #2c3e50; /* Dark text for readability */
+        }
+        
+    </style>
+    
+</head>
+<body>
+    <h1>Search for Products</h1>
+    <div class="search-section">
+        <form method="GET" action="{% url 'product_search' %}#bb">
+            <input type="text" name="product_name" placeholder="Enter product name" required>
+            <button type="submit"><i class="fas fa-search"></i> Search</button>
+        </form>
+    
+        {% if shops %}
+            <h2 style="color:white">Available in the following Ration Shops:</h2>
+            <ul>
+                {% for shop in shops %}
+                    <li>{{ shop.shop_name }} - {{ shop.address }}</li>
+                {% endfor %}
+            </ul>
+        {% elif product_name %}
+            <p>No shops found for "{{ product_name }}".</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>
+{% endblock %}

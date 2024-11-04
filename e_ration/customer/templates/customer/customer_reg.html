@@ -1,0 +1,114 @@
+{#{% extends 'temp/register.html' %}#}
+{#{% block base %}#}
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#	<meta charset="utf-8">#}
+{#	<meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#	<title></title>#}
+{#</head>#}
+{#<body>#}
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    <center><br>#}
+{#        <h1><B>REGISTER</B></h1>#}
+{#	<table>#}
+{#		<tr>#}
+{#			<td>name</td><br>#}
+{#			<td><input type="text" name="name" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td>address</td>#}
+{#			<td><input type="textarea" name="address" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td>gender</td>#}
+{#			<td><input type="radio" name="gen" value="male" checked="">male#}
+{#			    <input type="radio" name="gen" value="female">female#}
+{#                <input type="radio" name="gen" value="other">other#}
+{#			</td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#            <td>age</td>#}
+{#			<td><input type="text" name="age" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#            <td>contact</td>#}
+{#			<td><input type="text" name="contact" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td>email</td>#}
+{#			<td><input type="email" name="email" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td>password</td>#}
+{#			<td><input type="password" name="password" required=""></td>#}
+{#		</tr>#}
+{#		<tr>#}
+{#			<td><input type="submit" name="submit"></td>#}
+{#		</tr>#}
+{#	</table>#}
+{#    </center>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+{% extends 'temp/register.html'%}
+{% block base %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+	<title></title>
+</head>
+<body><center>
+	<form method="post">
+        {% csrf_token %}
+		<table><br><br><br>
+            <div class="col-lg-5">
+                <div class="card-body rounded-bottom bg-secondary p-5">
+                    <img class="w-25" src="/static/img/tt.png" alt="Image">
+                        <h1 style="font-family: 'Times New Roman';color: peru" align="center">CUSTOMER REGISTER</h1><br>
+                        <div class="form-group">
+                            <input type="text" name="card_no" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Enter Your Ration Card number" required="" />
+                        </div>
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Enter Your Name" required="" />
+                    </div>
+                    <div class="form-group">
+                        <textarea name="address" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your address" required="required"  /></textarea>
+{#                        <input type="text" name="address" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your address" required="required"  />#}
+                    </div>
+                    <div class="form-group" style="color: white">
+                        <input type="radio" name="gen" value="male" checked="" style=" font-family: 'Times New Roman';color: white" class="">Male
+                        <input  type="radio"  name="gen" value="female" checked="" style="font-family: 'Times New Roman'">Female
+                        <input type="radio" name="gen" value="other" checked="" style="font-family: 'Times New Roman'">Other
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="age" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your age" required  />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="contact" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your contact number" pattern="{0-9}" minlength="10" maxlength="10"  required="required" />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control p-4"style="font-family: 'Times New Roman'" placeholder="Enter Your E-mail" required="required" />
+                    </div>
+            
+                    <br>
+                    <div>
+                        <button class="btn btn-primary btn-block p-3"style="font-family: 'Times New Roman'" type="submit">REGISTER</button>
+                    </div>
+                </div>
+            </div>
+        </table>
+        {% if msg != '' %}
+            <script>
+                alert("Successfully registered..." )
+            </script>
+        {% endif %}
+    </form>
+    </center>
+</body>
+</html>
+{% endblock %}

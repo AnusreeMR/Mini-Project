@@ -24,6 +24,8 @@ def login(request):
                         return HttpResponseRedirect('/Temp/admin/')
                     elif tp == "shopkeeper":
                         return HttpResponseRedirect('/Temp/shopkeeper/')
+                    elif tp == "customer":
+                        return HttpResponseRedirect('/Temp/user/')
                 else:
                     # Incorrect password case
                     context = {

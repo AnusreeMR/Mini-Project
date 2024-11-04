@@ -18,21 +18,38 @@
 
                     <!-- Joining Date Field -->
                     <div class="form-group">
+                        <label style="color:white">Card Type</label>
                         <input type="text" name="ct" value="{{ dd.card_type }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="card_type" required="required" />
                     </div><br>
                     
                     <div class="form-group">
+                        <label style="color:white">Card Color</label>
                         <input type="text" name="cc" value="{{ dd.card_color }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="card_color" required="required" />
                     </div><br>
 
                     <div class="form-group">
+                        <label style="color:white">product Name</label>
                         <input type="text" name="pn" value="{{ dd.product_name }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="product_name" required="required" />
                     </div><br>
 
-                    <div class="form-group">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label style="color:white">Quantity</label>
                             <input type="text" name="qt" value="{{ dd.quantity }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="quantity" required="required" />
-                    </div><br>
+                        </div>
+                    
+                        <div class="form-group col-md-6">
+                            <label style="color:white">Unit</label>
+                            <select name="ut" class="form-control mb-3" style="font-family: 'Times New Roman'">
+                                <option value="kg" {% if dd.unit == 'kg' %}selected{% endif %}>Kilogram (kg)</option>
+                                <option value="ltr" {% if dd.unit == 'ltr' %}selected{% endif %}>Liter (ltr)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+
                     <div class="form-group">
+                        <label style="color:white">Price</label>
                         <input type="text" name="pc" value="{{ dd.price }}" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="price" required="required" />
                 </div><br>               
                     <!-- Update Button -->

@@ -90,7 +90,7 @@
 <body>
 
 <div class="center">
-	<h1>MANAGE RATION PRODUCT STOCK</h1>
+	<h1>MANAGE RATION STOCK</h1>
 	<table class="table">
 		<tr>
 			<th>Sl.no</th>
@@ -98,18 +98,18 @@
 			<th>Card Color</th>
 			<th>Product Name</th>
 			<th>Quantity</th>
-			<th>Price</th>
+			 {% comment %}<th>Price</th>{% endcomment %}
 			<th>Update</th>
 			<th>Delete</th>
 		</tr>
 		{% for i in dd %}
 		<tr>
-			<td>{{ forloop.counter }}</td>
-			<td>{{ i.rationproduct.card_type }}</td>
-			<td>{{ i.rationproduct.card_color }}</td>
-			<td>{{ i.rationproduct.product_name }}</td>
-			<td>{{ i.stock_quantity }}</td>
-			<td>{{ i.stock_price }}</td>
+			<td style="color: black;">{{ forloop.counter }}</td>
+			<td style="color: black;">{{ i.rationproduct.card_type }}</td>
+			<td style="color: black;">{{ i.rationproduct.card_color }}</td>
+			<td style="color: black;">{{ i.rationproduct.product_name }}</td>
+			<td style="color: black;">{{ i.stock_quantity }}</td>
+			{% comment %}<td style="color: black;">{{ i.stock_price }}</td>{% endcomment %}
 			<td><a href="{% url 'kk' i.stock_id %}#bb" class="btn btn-update">Update</a></td>
 			<td><a href="{% url 'cc' i.stock_id %}#bb" class="btn btn-delete">Delete</a></td>
 		</tr>

@@ -106,13 +106,13 @@
 		</tr>
 		{% for i in dd %}
 		<tr>
-			<td>{{ forloop.counter }}</td>
-			<td>{{ i.supplycoproduct_name }}</td>
-			<td>{{ i.manufacture_date }}</td>
-			<td>{{ i.expiry_date }}</td>
-			<td>{{ i.supplyco_quantity }}</td>
-			<td>{{ i.actual_price }}</td>
-			<td>{{ i.available_price }}</td>
+			<td style="color: black;">{{ forloop.counter }}</td>
+			<td style="color: black;">{{ i.supplycoproduct_name }}</td>
+			<td style="color: black;">{{ i.manufacture_date }}</td>
+			<td style="color: black;">{{ i.expiry_date }}</td>
+			<td style="color: black;">{{ i.supplyco_quantity }}</td>
+			<td style="color: black; text-align: right;">{{ i.actual_price|floatformat:2 }}</td>
+			<td style="color: black; text-align: right;">{{ i.available_price|floatformat:2 }}</td>
 			<td><a href="/Supplyco_product/update/{{i.supplycoproduct_id}}/#bb" class="btn btn-update">Update</a></td>
 			<td><a href="{% url 'ff' i.supplycoproduct_id %}/#bb" class="btn btn-delete">Delete</a></td>
 		</tr>

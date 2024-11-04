@@ -26,7 +26,10 @@ urlpatterns = [
     url('Supplyco_product/',include('Supplyco_product.url')),
     url('ration/',include('ration_registration.url')),
     url('User/',include('User.url')),
+    url('Cart/',include('Cart.url')),
+    url('customer/',include('customer.url')),
     url('stock/',include('stock.url')),
+    url('product/',include('product.url')),
     url('$',views.home),
     
 ]

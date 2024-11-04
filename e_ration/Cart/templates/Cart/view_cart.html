@@ -1,0 +1,118 @@
+{% extends 'Temp/user.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        a {
+            color: #d9534f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .empty-message {
+            text-align: center;
+            font-size: 1.2em;
+            color: #888;
+        }
+        .total {
+            font-weight: bold;
+            color: #333;
+        }
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-buttons button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>My Cart</h1></center>
+    <table border="1" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Shop Name</th>
+                <th>Product Name</th>
+                <th>Actual Price</th>
+                <th>Available Price</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if cart_items %}
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.supplycoproduct.shop.shop_name }}</td>
+                    <td>{{ item.supplycoproduct.supplycoproduct_name }}</td>
+                    <td style="text-align: right;">{{ item.supplycoproduct.actual_price|floatformat:2 }}</td>
+                    <td style="text-align: right;">{{ item.supplycoproduct.available_price|floatformat:2 }}</td>
+                    <td>
+                        <div class="quantity-buttons">
+                            <form action="{% url 'decrease_quantity' item.cart_product_id %}#bb" method="POST" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit">-</button>
+                            </form>
+                            <span>{{ item.quantity }}</span>
+                            <form action="{% url 'increase_quantity' item.cart_product_id %}#bb" method="POST" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit">+</button>
+                            </form>
+                        </div>
+                    </td>
+                    <td style="text-align: right;">{{ item.total_price|floatformat:2 }}</td>
+                    <td><a href="{% url 'remove_from_cart' item.cart_product_id %}">Remove</a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="7" class="total">Total Amount: {{ total_amount }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="empty-message">Your cart is empty.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}

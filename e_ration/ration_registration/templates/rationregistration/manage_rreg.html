@@ -5,39 +5,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave Requests</title>
+    <title>Ration Shop Registration Requests</title>
+    <style>
+        /* Make the table responsive */
+        .table-container {
+            overflow-x: auto; /* Add horizontal scroll for smaller screens */
+        }
+
+        /* Adjust the table width and set column widths */
+        .table {
+            width: 100%; /* Set the table to take full width */
+            margin: 0 auto; /* Center the table */
+            border-collapse: collapse; /* Remove spacing between table cells */
+        }
+
+        .table th, .table td {
+            padding: 8px; /* Set padding for better spacing */
+            text-align: center; /* Center-align content */
+            font-size: 14px; /* Adjust font size for compact look */
+        }
+
+        /* Set specific column widths */
+        .table th:nth-child(1), .table td:nth-child(1) { width: 10%; } /* Shop ID */
+        .table th:nth-child(2), .table td:nth-child(2) { width: 15%; } /* Shop Name */
+        .table th:nth-child(3), .table td:nth-child(3) { width: 15%; } /* Shopkeeper Name */
+        .table th:nth-child(4), .table td:nth-child(4) { width: 20%; } /* Address */
+        .table th:nth-child(5), .table td:nth-child(5) { width: 15%; } /* Email */
+        .table th:nth-child(6), .table td:nth-child(6) { width: 10%; } /* Municipality */
+        .table th:nth-child(7), .table td:nth-child(7) { width: 10%; } /* Status */
+        .table th:nth-child(8), .table td:nth-child(8) { width: 15%; } /* Actions */
+
+        /* Style for table header */
+        .thead-dark th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        /* Style for buttons */
+        .btn {
+            padding: 5px 10px;
+            font-size: 14px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
     <center><br><br>
-    <h1>RationShop Registration Requests</h1>
-    <table border="1" class="table table-striped">
-		<tr>          
-                <td>Shop ID</td>
-                <td>Shop Name</td>
-                <td>Shopkeeper Name</td>
-                <td>Address</td>
-                <td>Email</td>
-                <td>Muncipality</td>
-                <td>Status</td>
-                <td>Actions</td>
-            </tr>
-            {% for i in dd %}
-            <tr>
-                <td>{{ i.shop_id }}</td>
-                <td>{{ i.shop_name }}</td>
-                <td>{{ i.shopkeeper_name }}</td>
-                <td>{{ i.address }}</td>
-                <td>{{ i.email }}</td>
-                <td>{{ i.muncipality }}</td>
-                <td>{{ i.status }}</td>
-                <td><a href="{% url 'approve' idd=i.shop_id %}/#dd" class="btn btn-outline-dark">Approve</a></td>
-                <td><a href="{% url 'reject' idd=i.shop_id %}/#dd" class="btn btn-outline-dark">Reject</a></td>
-                {% comment %}<td><a href="{% url 'approve_leave_request' ill=leave_id %}" class="btn btn-outline-dark">Approve</a></td>
-                <td><a href="{% url 'reject_leave_request' ill=leave_id %}" class="btn btn-outline-dark">Reject</a></td> {% endcomment %}
-                {% comment %} <a href="{% url 'approve_leave_request' i.leave_id %}" class="btn btn-outline-dark">Approve</a> | <a href="{% url 'reject_leave_request' i.leave_id %}" class="btn btn-outline-dark">Reject</a></td> {% endcomment %}
-            </tr>
-            {% endfor %}
-    </table>
+    <h1>Ration Shop Registration Requests</h1><br>
+
+    <!-- Search form -->
+    <form method="get" action="{% url 'mr' %}#bb"> <!-- Update 'your_view_name' to your actual view name -->
+        <input type="text" name="shop_id" value="{{ search_query }}" placeholder="Search by Shop ID">
+        <button type="submit">Search</button>
+    </form><br>
+
+    <div class="table-container">
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sl.no</th>
+                    <th>Shop ID</th>
+                    <th>Shop Name</th>
+                    <th>Shopkeeper Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Municipality</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in dd %}
+                <tr>
+                    <td style="color: black;">{{ forloop.counter }}</td>
+                    <td style="color: black;">{{ i.shop_id }}</td>
+                    <td style="color: black;">{{ i.shop_name }}</td>
+                    <td style="color: black;">{{ i.shopkeeper_name }}</td>
+                    <td style="color: black;">{{ i.address }}</td>
+                    <td style="color: black;">{{ i.email }}</td>
+                    <td style="color: black;">{{ i.muncipality }}</td>
+                    <td style="color: black;">{{ i.status }}</td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <a href="{% url 'approve' idd=i.shop_id %}/#bb" class="btn btn-success mr-2">Approve</a>
+                            <a href="{% url 'reject' idd=i.shop_id %}/#bb" class="btn btn-danger mr-2">Reject</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        {% comment %}<h1>Rejected Requests</h1>
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sl.no</th>
+                    <th>Shop ID</th>
+                    <th>Shop Name</th>
+                    <th>Shopkeeper Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Municipality</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in ee %}
+                <tr>
+                    <td style="color: black;">{{ forloop.counter }}</td>
+                    <td style="color: black;">{{ i.shop_id }}</td>
+                    <td style="color: black;">{{ i.shop_name }}</td>
+                    <td style="color: black;">{{ i.shopkeeper_name }}</td>
+                    <td style="color: black;">{{ i.address }}</td>
+                    <td style="color: black;">{{ i.email }}</td>
+                    <td style="color: black;">{{ i.muncipality }}</td>
+                    <td style="color: black;">{{ i.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>{% endcomment %}
+    </div>
     </center>
 </body>
 </html>

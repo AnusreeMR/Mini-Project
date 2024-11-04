@@ -3,6 +3,7 @@ from django.db import models
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
     card_id = models.BigIntegerField()
+    email = models.CharField(max_length=50)
     card_type = models.CharField(max_length=10)
     card_color = models.CharField(max_length=10)
     head_name = models.CharField(max_length=45)
@@ -17,4 +18,4 @@ class User(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'User'
+        db_table = 'user'

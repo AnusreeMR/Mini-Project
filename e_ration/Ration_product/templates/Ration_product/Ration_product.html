@@ -49,16 +49,39 @@
                     </div><br>
 
                      <!-- Department Field -->
-                     <div class="form-group">
-                        <label style="color:white">Quantity</label>
-                        <input type="text" name="Quantity" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="Quantity" required="required" />
-                    </div><br>
-
+                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label style="color:white">Quantity</label>
+                                <input type="text" name="quantity" class="form-control p-4" 
+                                       style="font-family: 'Times New Roman'" placeholder="Quantity" 
+                                       required="required" pattern="\d+" 
+                                       title="Quantity must contain only numbers." />
+                                <span style="color: red;">{{ quantity_error }}</span>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label style="color:white">Unit</label>
+                                <select name="unit" class="form-control mb-3" style="font-family: 'Times New Roman'">
+                                    <option value="kg">Kilogram (kg)</option>
+                                    <option value="ltr">Liter (ltr)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
                      <!-- Department Field -->
                      <div class="form-group">
-                        <label style="color:white">price</label>
-                        <input type="text" name="price" class="form-control p-4" style="font-family: 'Times New Roman'" placeholder="price" required="required" />
+                        <label style="color:white">Price</label>
+                        <input type="text" name="price" class="form-control p-4" 
+                               style="font-family: 'Times New Roman'" placeholder="Price" 
+                               required="required" pattern="\d+(\.\d{1,2})?" 
+                               title="Price must be a number and can include up to two decimal places." />
+                        <span style="color: red;">{{ price_error }}</span>
                     </div><br>
+                    
                     <div>
                         <button class="btn btn-primary btn-block p-3" style="font-family: 'Times New Roman'" type="submit">Add </button>
                     </div><br>

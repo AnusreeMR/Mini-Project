@@ -1,50 +1,90 @@
-{% extends 'Temp/admin.html' %}
+{% extends 'Temp/shopkeeper.html' %}
 {% block base %}
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Details</title>
+    <style>
+        table {
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        th, td {
+            padding: 8px; 
+            text-align: left; 
+            border: 1px solid #ddd;
+        }
+        .details-row {
+            display: none; /* Initially hide the detailed rows */
+        }
+        .view-more-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function toggleDetails(rowId) {
+            var detailsRow = document.getElementById(rowId);
+            if (detailsRow.style.display === "none" || detailsRow.style.display === "") {
+                detailsRow.style.display = "table-row";
+            } else {
+                detailsRow.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
-<center><br><br><br>
-<h1>User Details</h1><br>
-	<table border="1" class="table table-striped">
-		<tr>
-			<td>User Id</td>
-			<td>Card Id</td>
-			<td>Card type</td>
-			<td>Card color</td>
-            <td>Head name</td>
-            <td>Annual Income</td>
-            <td>Occupation</td>
-            <td>Age</td>
-            <td>No of family member</td>
-            <td>No of adults</td>
-            <td>No of family children</td>
-            <td>Address</td>
-            <td>Mobile Number</td>
-		</tr>
-        {% for i in dd %}
-		<tr>
-			<td>{{ i.user_id }}</td>
-			<td>{{ i.card_id }}</td>
-			<td>{{ i.card_type }}</td>
-			<td>{{ i.card_color}}</td>
-            <td>{{ i.head_name}}</td>
-            <td>{{ i.annual_income}}</td>
-            <td>{{ i.occupation}}</td>
-            <td>{{ i.age}}</td>
-            <td>{{ i.no_of_family_member}}</td>
-            <td>{{ i.no_of_adults}}</td>
-            <td>{{ i.no_of_family_children}}</td>
-            <td>{{ i.address}}</td>
-            <td>{{ i.mobile_number}}</td>
-		</tr>
-        {% endfor %}
-	</table>
-</center>
+    <center><br><br><br>
+        <h1>User Details</h1><br>
+
+        <!-- Search Form -->
+        <form method="GET" action="{% url 'vuser' %}/#bb">
+            <input type="text" name="search" placeholder="Search by Card ID or Head Name" style="font-family: 'Times New Roman'; padding: 5px; width: 300px;">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <br>
+
+        <table class="table table-striped">
+            <tr style="background-color: #343a40; color: white;">
+                <th>Sl.no</th>
+                <th>Card Id</th>
+                <th>Card Type</th>
+                <th>Card Color</th>
+                <th>Head Name</th>
+                <th>More Details</th>
+            </tr>
+            {% for i in dd %}
+            <tr>
+                <td style="color: black;">{{forloop.counter}}</td>
+                <td style="color: black;">{{ i.card_id }}</td>
+                <td style="color: black;">{{ i.card_type }}</td>
+                <td style="color: black;">{{ i.card_color }}</td>
+                <td style="color: black;">{{ i.head_name }}</td>
+                <td>
+                    <button class="view-more-btn" onclick="toggleDetails('details-{{ i.user_id }}')">View More</button>
+                </td>
+            </tr>
+            <tr id="details-{{ i.user_id }}" class="details-row">
+                <td colspan="5">
+                    <strong>Annual Income:</strong> {{ i.annual_income }}<br>
+                    <strong>Occupation:</strong> {{ i.occupation }}<br>
+                    <strong>Age:</strong> {{ i.age }}<br>
+                    <strong>No of Family Members:</strong> {{ i.no_of_family_member }}<br>
+                    <strong>No of Adults:</strong> {{ i.no_of_adults }}<br>
+                    <strong>No of Family Children:</strong> {{ i.no_of_family_children }}<br>
+                    <strong>Address:</strong> {{ i.address }}<br>
+                    <strong>Mobile Number:</strong> {{ i.mobile_number }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
 </body>
 </html>
 {% endblock %}
